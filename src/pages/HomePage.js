@@ -1,12 +1,30 @@
 import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
+import { useContext, useEffect } from "react"
+import { UserContext } from "../contexts/userContext"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export default function HomePage() {
+  const {user, setUser} = useContext(UserContext);
+  const navigate = useNavigate();
+  console.log(user)
+  useEffect(() => {
+    const config = {
+      headers: {authorization: `Bearer ${user}`}
+    }
+
+    axios.get("http://localhost:5000/logged-user", config)
+    .then((res) => {
+      setUser(res.data)
+    })
+    .catch(err => console.log(err))
+  }, [])
   return (
     <HomeContainer>
       <Header>
-        <h1>Olá, Fulano</h1>
+        <h1>Olá, {user.name}</h1>
         <BiExit />
       </Header>
 

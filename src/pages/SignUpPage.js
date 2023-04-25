@@ -13,7 +13,7 @@ export default function SignUpPage() {
   function signup(e) {
     e.preventDefault();
     
-    if(password != confirmPassword) return alert("As senhas não são as mesmas!")
+    if(password !== confirmPassword) return alert("As senhas não são as mesmas!")
 
     axios
       .post("http://localhost:5000/cadastro", {name, email, password})
@@ -53,7 +53,7 @@ export default function SignUpPage() {
         <button>Cadastrar</button>
       </form>
 
-      <Link>Já tem uma conta? Entre agora!</Link>
+      <Link to="/">Já tem uma conta? Entre agora!</Link>
     </SingUpContainer>
   );
 }

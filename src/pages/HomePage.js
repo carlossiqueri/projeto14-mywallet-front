@@ -15,7 +15,7 @@ export default function HomePage() {
       headers: {authorization: `Bearer ${user}`}
     }
 
-    axios.get("http://localhost:5000/logged-user", config)
+    axios.get(`${process.env.REACT_APP_API_URL}/logged-user`, config)
     .then((res) => {
       setUser(res.data)
     })

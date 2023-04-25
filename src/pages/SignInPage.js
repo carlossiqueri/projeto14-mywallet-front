@@ -4,7 +4,6 @@ import MyWalletLogo from "../components/MyWalletLogo";
 import { useContext, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/userContext";
-
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +13,7 @@ export default function SignInPage() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/login", { email, password })
+      .post(`${process.env.REACT_APP_API_URL}/login`, { email, password })
       .then((res) => {
         const token = res.data;
         setUser(token);
